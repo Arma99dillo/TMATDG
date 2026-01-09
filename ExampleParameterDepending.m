@@ -63,7 +63,7 @@ ylabel('Norm','FontSize',18, 'Interpreter','latex')
 
 %% Plot solution
 k = 2.39; % wavenumber
-R = 0.8;
+R = 1.05;
 
 % Define scatterers orientation and position
 NScat=30; % number of scatterers
