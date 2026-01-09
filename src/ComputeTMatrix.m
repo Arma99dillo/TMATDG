@@ -8,7 +8,13 @@ if size(points,1) <=2
 end
 
 % check if they are anticlockwise and flip if necessary
-if ispolycw(points(:,1),points(:,2))
+s=0;
+for j=1:(size(points,1)-1)
+    s=s+(points(j+1,1)-points(j,1))*(points(j+1,2)+points(j,2));
+end
+s=s+(points(1,1)-points(end,1))*(points(1,2)+points(end,2));
+
+if s>0
     points(:,1) = flip(points(:,1));
     points(:,2) = flip(points(:,2));
 end
