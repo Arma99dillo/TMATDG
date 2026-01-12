@@ -42,7 +42,7 @@ param.vertices = points; % vertices
 param.R=2*h+radius;
 param.M=ceil(kwave*param.R)+5;
 
-% compute T-matric order of truncation
+% compute T-matrix order of truncation
 if nargin == 4 % impose truncation order
     nmax = suggestedorder(kwave,radius);
 else 

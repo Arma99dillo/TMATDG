@@ -2,18 +2,17 @@ function [int1,int2,int3]=Dir_to_Neum(p,L1,L2,d,nd,l,j,k,l1,l2,M,beta_n,coeff,de
 
 % Compute integral of basis functions on the circular bounday with DtN
 
-toll=1e-10; 
 dl = d(:,l); dj = d(:,j); % PW directions
 integers=(-M:1:M)'; % Fourier modes
 
 % get coefficients of basis functions phi_l e phi_j
 theta1=mod(atan2(p(l1(1),2),p(l1(1),1)),2*pi); theta2=mod(atan2(p(l1(2),2),p(l1(2),1)),2*pi); % integration extremes
-if(abs(theta2)<=toll) 
-    theta2=2*pi; 
+if theta2 < theta1  
+    theta2=2*pi+theta2; 
 end
 theta1_t=mod(atan2(p(l2(1),2),p(l2(1),1)),2*pi); theta2_t=mod(atan2(p(l2(2),2),p(l2(2),1)),2*pi); % integration extremes
-if(abs(theta2_t)<=toll) 
-    theta2_t=2*pi; 
+if theta2_t < theta1_t  
+    theta2_t=2*pi+theta2_t; 
 end
 coeffl=coeff((2*M+1)*nd*(L1-1)+(l-1)*(2*M+1)+1 : (2*M+1)*nd*(L1-1)+l*(2*M+1));
 coeffj=coeff((2*M+1)*nd*(L2-1)+(j-1)*(2*M+1)+1 : (2*M+1)*nd*(L2-1)+j*(2*M+1));

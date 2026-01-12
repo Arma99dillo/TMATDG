@@ -7,7 +7,7 @@ function [LI,LDtN,LDir] = MeshBoundDir(mesh,param)
 p=mesh.p; t=mesh.t; B=mesh.B; R=param.R;
 
 % First divide in internal and boundaryy edges
-control = 0; ni=0; nb=0; c=0; toll=1e-3;
+control = 0; ni=0; nb=0; toll=1e-10;
 for j = 1:size(t,1)
 
     % triangles edges
@@ -29,9 +29,6 @@ for j = 1:size(t,1)
         if control == 0 % if it is not already included
             % check if it is a boundary edge
             if(ismember(Edges(l,1),B) && ismember(Edges(l,2),B))
-                c=c+1;
-            end
-            if c==1
                 % add boundary edge to LB
                 nb=nb+1;
                 LB(nb,1:2)= Edges(l,:);
@@ -44,12 +41,9 @@ for j = 1:size(t,1)
             end
         end
         control = 0;
-        c=0;
     end
     control=0;
-    c=0;
 end
-
 
 % Between boundary edges, I have to distinguish between the ones that are
 % on the Dirichlet boundary and the one that are on the circular boundary

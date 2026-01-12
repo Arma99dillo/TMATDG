@@ -34,7 +34,6 @@ n_triangles = size (t,1);
 for i_t=1:n_triangles
     vertices=p(t(i_t,:),:);
     if det([vertices(:,1) vertices(:,2) ones(3,1)]) < 0
-        beep
         t(i_t,[1 2 3])= t(i_t,[2 1 3]);
     end
 end

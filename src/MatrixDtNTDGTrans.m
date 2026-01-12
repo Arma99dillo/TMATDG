@@ -14,7 +14,6 @@ m = size(t,1);
 A = spalloc(m*nd,m*nd,10*m*nd);
 
 Rot =[0,1;-1,0]; % Rotation matrix
-toll = 1e-10;
 t = [t t(:,1)];
 
 % First cycle on triangles to compute internal edges terms 
@@ -127,8 +126,8 @@ for L=1:size(LDtN,1)
     t1=LDtN(L,3); % adjiacent triangle
     p1=p(LDtN(L,1),:)'; p2=p(LDtN(L,2),:)';
     theta1=mod(atan2(p1(2),p1(1)),2*pi); theta2=mod(atan2(p2(2),p2(1)),2*pi); %get integration extremes
-    if(abs(theta2)<=toll) 
-        theta2=2*pi; 
+    if theta2 < theta1 
+        theta2=2*pi+theta2;
     end
     % cycle on PW directions
     A_aux =zeros(nd,nd); % auxiliary matrix

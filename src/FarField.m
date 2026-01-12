@@ -9,7 +9,7 @@ LDtN=mesh.LDtN; nd=param.nd; d=param.d; p=mesh.p; K=param.K; R=param.R;
 nodes=param.nodes; w=param.w; q=param.q;
 
 % Cycle on the evaluation points
-toll=1e-10; val=zeros(length(vec),1);
+val=zeros(length(vec),1);
 for j=1:length(vec)
     
     ang=vec(j); d1=cos(ang); d2=sin(ang); %direction angle
@@ -20,8 +20,8 @@ for j=1:length(vec)
 
         p1=p(LDtN(L,1),:)'; p2=p(LDtN(L,2),:)'; % endpoints
         theta1=mod(atan2(p1(2),p1(1)),2*pi); theta2=mod(atan2(p2(2),p2(1)),2*pi);
-        if(abs(theta2)<=toll)
-            theta2=2*pi;
+        if theta2 < theta1 
+            theta2=2*pi+theta2;
         end
         % Cycle on PW directions
         for l = 1:nd
