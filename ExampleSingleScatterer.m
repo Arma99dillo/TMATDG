@@ -2,7 +2,7 @@
 clear; close all; addpath src; addpath TMATROM_OBJECT_ORIENTED_CORE
 
 k = 5; % wavenumber
-h = 1; % mesh size
+h = 0.5; % mesh size
 p = 20; % number of plane wave directions
 
 % define the scatterer vertices as a nvx2 matrix
