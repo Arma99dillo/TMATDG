@@ -24,7 +24,7 @@ nmax=tmat{1}.order;
 
 
 % Solve iteratively multiple particle scattering problem
-disp(['Solving multiple scattering problem with ', num2str(NScat), ' scatterers'])
+disp('Solving multiple scattering problem and computing norm')
 tic()
 % create wave function expansions of plane wave at the centers of
 % each of the scatterers
@@ -59,13 +59,7 @@ nitns = min(100,floor(NScat*(2*nmax+1)/2));
 % convert coefficients into wavefunction expansions
 c = unpack(x);
 
-toc()
-
-
 % Evaluate total field and compute norm
-disp('Evaluating total field and computing norm')
-tic()
-
 % setup a grid
 NEval = 200;
 t=linspace(-r,r,NEval); s=linspace(-r,r,NEval);
@@ -96,6 +90,7 @@ f_squared = abs(totalfield).^2;
 integral_val = trapz(s, trapz(t, f_squared, 2), 1);
 L2_norm = sqrt(integral_val);
 
+toc()
 
 %-----------------------------------------
 % indented function to implement the matrix
