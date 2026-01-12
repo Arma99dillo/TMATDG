@@ -4,7 +4,7 @@ MATLAB package for the solution of multiple scattering problems, coupling Trefft
 _TMATDG: applying TDG methods to multiple scattering via T-matrix approximation (2026)_, by Armando Maria Monforte
 
 # Reproducibility Instructions
-All the codes have been tested on MATLAB R2024b release. The MATLAB Partial Differential Equation Toolbox™ is needed for the correct working of the code. The `TMATROM_OBJECT_ORIENTED_CORE` directory is taken from the TMATROM package from https://github.com/stuart-hawkins/tmatrom with little modifications.
+All the codes have been tested on MATLAB R2023b and R2024b release. The MATLAB Partial Differential Equation Toolbox™ is needed for the correct working of the code. The `TMATROM_OBJECT_ORIENTED_CORE` directory is taken from the TMATROM package from https://github.com/stuart-hawkins/tmatrom with little modifications.
 
 # Contents and Structure
 The TMATDG package is based on the TMATROM package and is used to approximate the T-matrix of ploygonal obstacles for multiple scattering problems.
