@@ -17,8 +17,9 @@ scatt.type='dir';
 %% Cicle on radius length
 uinc = point_source(2+0i,k); %circular wave
 
-l=1; r=0.5; L2_norm = zeros(61,1); RR = zeros(61,1);
-for R=0.8:0.01:1.4
+Ri = 0.8; Rf = 1.4; step = 0.01; nexp = ceil((Rf-Ri)/step)+1;
+l=1; r=0.5; L2_norm = zeros(nexp,1); RR = zeros(nexp,1);
+for R=Ri:step:Rf
 
     % Define scatterers orientation and position
     NScat=30; % number of scatterers
@@ -37,6 +38,7 @@ for R=0.8:0.01:1.4
     TmatCell = cell(1,1); TmatCell{1}=tmat;
     SolverCell = cell(1,1); SolverCell{1}=solver;
 
+    disp(['Experiment ',num2str(l), ' out of ', num2str(nexp)])
     L2_norm(l) = MultiTmatEvaluate(k,uinc,TmatCell,SolverCell,ScatArr,r);
     RR(l) = R;
     l=l+1;
