@@ -2,8 +2,8 @@
 clear; close all; addpath src; addpath TMATROM_OBJECT_ORIENTED_CORE
 
 k = 10; % wavenumber
-h = 0.5; % mesh size
-nd = 20; % number of plane wave directions
+h = 1; % mesh size
+p = 15; % number of plane wave directions
 
 % define the shape vertices as a Nx2 matrix
 NShape = 3; ScatShape=cell(NShape,1);
@@ -25,7 +25,7 @@ theta = 3*pi/4; % incident angle
 uinc = plane_wave(theta,k); % incident plane wave function
 PlotPar.inside = true; PlotPar.limX=[-7,7]; PlotPar.limY=[-7,7];
 SavePath.choice=true; SavePath.file = 'MultiTest.mat';
-MultiScatt(k,h,nd,uinc,ScatShape,ScatArr,PlotPar,SavePath)
+MultiScatt(k,h,p,uinc,ScatShape,ScatArr,PlotPar,SavePath)
 
 
 %% Solve with a different configuration but same shapes

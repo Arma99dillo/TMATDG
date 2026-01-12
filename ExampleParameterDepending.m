@@ -2,8 +2,8 @@
 clear; close all; addpath src; addpath TMATROM_OBJECT_ORIENTED_CORE
 
 k = 2.39; % wavenumber
-h = 0.02; % mesh size
-p = 20; % number of plane wave directions
+h = 0.05; % mesh size
+p = 10; % number of plane wave directions
 
 nv = 6; % number of vertices
 for j=1:nv
