@@ -56,7 +56,7 @@
 % along with TMATROM.  If not, see <http://www.gnu.org/licenses/>.
 
 
-classdef solver < matlab.mixin.Copyable
+classdef solver < handle
     
     properties
         kwave

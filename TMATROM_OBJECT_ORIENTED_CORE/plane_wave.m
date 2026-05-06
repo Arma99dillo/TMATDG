@@ -187,35 +187,7 @@ classdef plane_wave < incident
                 dy = vy;
             end
             
-        end 
-
-        function grad = evaluateGradientVect(self,points,mask)
-            
-            % initialize return values
-            dx = zeros(size(points));
-            dy = zeros(size(points));
-
-            % apply mask if necessary
-            if nargin>2
-                points=points(mask);
-            end
-
-            % compute incident field
-            scalarPart = 1i*self.kwave*exp(1i*self.kwave*real(conj(self.direction)*points));
-            vx = real(self.direction) * scalarPart;
-            vy = imag(self.direction) * scalarPart;
-            
-            % insert values into the return array
-            if nargin>2
-                dx(mask) = vx;
-                dy(mask) = vy;
-            else
-                dx = vx;
-                dy = vy;
-            end
-            grad = [dx;dy];
-            
-        end
+        end        
         
     end % end methods
         

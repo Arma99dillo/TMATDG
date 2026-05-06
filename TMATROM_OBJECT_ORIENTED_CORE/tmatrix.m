@@ -72,7 +72,7 @@
 % along with TMATROM.  If not, see <http://www.gnu.org/licenses/>.
 
 
-classdef tmatrix < matlab.mixin.Copyable
+classdef tmatrix < handle
     
     properties
         
@@ -82,7 +82,6 @@ classdef tmatrix < matlab.mixin.Copyable
         origin
         matrix
         comments
-        radius
     end
     
     methods
@@ -206,16 +205,6 @@ classdef tmatrix < matlab.mixin.Copyable
         function setOrigin(self,origin)
             
             self.origin = origin;
-            
-        end
-
-        %-----------------------------------------
-        % save the radius
-        %-----------------------------------------
-
-        function saveRadius(self,radius)
-            
-            self.radius = radius;
             
         end
         

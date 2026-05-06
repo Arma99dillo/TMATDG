@@ -1,7 +1,7 @@
 % Define the TDG solver class, used to solve scattering problem 
 % with the DtN-TDG method
 
-classdef TDGsolver < solver
+classdef TDGsolver < solver & matlab.mixin.Copyable
     
     %class properties
     properties
@@ -78,7 +78,7 @@ classdef TDGsolver < solver
                     self.rhs(:,j) = RhsDtNTDG(self,gd);
                 else
                     gd = @(x) self.incidentField{j}.evaluate(x); % incident wave
-                    gn = @(x) self.incidentField{j}.evaluateGradientVect(x); % incident wave gradient
+                    gn = @(x) vectorize(@(y) self.incidentField{j}.evaluateGradient(y), x); % incident wave gradient
                     self.rhs(:,j) = RhsDtNTDGTrans(self,gd,gn);
                 end
             end
@@ -194,5 +194,11 @@ classdef TDGsolver < solver
         end
 
     end % end methods
+
+    methods (Access = protected)
+        function cpObj = copyElement(obj)
+            cpObj = copyElement@matlab.mixin.Copyable(obj);
+        end
+    end
 
 end

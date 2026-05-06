@@ -40,13 +40,17 @@ param.vertices = points; % vertices
 
 % set enclosing circle radius and DtN order of truncation
 param.R=2*h+radius;
-param.M=ceil(kwave*param.R)+5;
 
 % compute T-matrix order of truncation
 if nargin == 4 % impose truncation order
     nmax = suggestedorder(kwave,radius);
+    param.M=ceil(kwave*param.R)+1;
+elseif nargin == 5 
+    nmax = varargin{1};
+    param.M=ceil(kwave*param.R)+1;
 else 
     nmax = varargin{1};
+    param.M=varargin{2};
 end
 % setup the solver
 if strcmp(scatt.type, 'trans')
@@ -71,7 +75,7 @@ end
 % setup the T-matrix
 disp('Computing T-matrix')
 tic()
-tmat = ghtmatrix(nmax,kwave,solver,0); %compute always in zero
+tmat = tmatrixDG(ghtmatrix(nmax,kwave,solver,0)); %compute always in zero
 toc()
 
 if abs(center) > 1e-10

@@ -125,46 +125,6 @@ classdef wavefunction2d < incident
             end
             
         end
-
-        function grad = evaluateGradientVect(self,points,mask)
-            
-            % intialize return array
-            dx=zeros(size(points));
-            dy=zeros(size(points));
-
-            % apply mask if necessary
-            if nargin>2
-                points=points(mask);
-            end
-            
-            % subtract origin
-            points = points - self.origin;
-
-            % wavefunction is given in polar coordinates so get necessary
-            % quantities in polar coordinates first
-            r = abs(points);
-            f = self.radial_function(self.kwave * r);
-            df = self.derivative_radial_function(self.kwave * r);            
-            t = angle(points);
-            dtdx = -imag(points)./r.^2;
-            dtdy = real(points)./r.^2;
-            
-            % now compute gradient
-            e = exp(1i*self.order*t);
-            vx = 1i*self.order*e.*f.*dtdx + self.kwave*e.*df.*real(points)./r;
-            vy = 1i*self.order*e.*f.*dtdy + self.kwave*e.*df.*imag(points)./r;
-            
-            % insert values into the return array
-            if nargin>2
-                dx(mask) = vx;
-                dy(mask) = vy;
-            else
-                dx = vx;
-                dy = vy;
-            end
-            grad=[dx;dy];
-            
-        end
         
     end % end methods
     
