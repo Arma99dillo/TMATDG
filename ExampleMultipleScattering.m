@@ -2,15 +2,15 @@
 clear; close all; addpath src; addpath TMATROM_OBJECT_ORIENTED_CORE
 
 k = 10; % wavenumber
-h = 1; % mesh size
-p = 15; % number of plane wave directions
+h = 0.5; % mesh size
+p = 20; % number of plane wave directions
 
 % define the shape vertices as a Nx2 matrix
 NShape = 3; ScatShape=cell(NShape,1);
 ScatShape{1}.vertices = [1/3, 1/3; 1/3, 1; -1/3, 1; -1/3, 1/3; -1, 1/3;
     -1, -1/3; -1/3, -1/3; -1/3, -1; 1/3, -1; 1/3, -1/3; 1, -1/3; 1, 1/3]; % cross
 ScatShape{1}.type = 'dir';
-ScatShape{2}.vertices = [0, 1; -sqrt(3)/2, -1/2; sqrt(3)/2, -1/2,]; % triangle
+ScatShape{2}.vertices = [0, 1; -sqrt(3)/2, -1/2; sqrt(3)/2, -1/2]; % triangle
 ScatShape{2}.type = 'trans'; ScatShape{2}.n_in = 2.5;
 ScatShape{3}.vertices = [1, 0; 0, 1; -1, 0; 0,-1]; % square
 ScatShape{3}.type = 'dir';
